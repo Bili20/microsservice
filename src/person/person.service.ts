@@ -3,6 +3,7 @@ import { CreatePersonDto } from './dto/create-person.dto';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Person } from './entities/person.entity';
 import { Repository } from 'typeorm';
+const bcrypt = require('bcrypt');
 
 @Injectable()
 export class PersonService {
@@ -11,10 +12,15 @@ export class PersonService {
   ) {}
   async create(createPersonDto: CreatePersonDto) {
     const person = this.personRepo.create(createPersonDto);
+
+    person.password = bcrypt.hashSync(createPersonDto.password, 10);
+    await this.personRepo.save(person);
   }
 
-  findAll() {
-    return `This action returns all person`;
+  async findAll() {
+    const person = await this.personRepo.find();
+    const returnPerson = person.map(({ password, ...person }) => person);
+    return returnPerson;
   }
 
   findOne(id: number) {
