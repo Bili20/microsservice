@@ -44,7 +44,9 @@ export class OrdersService {
     return await this.orderRepo.find({ where: { client_id: client_id } });
   }
 
-  findOne(id: number) {
-    return `This action returns a #${id} order`;
+  async findOne(id: string, client_id: number) {
+    return await this.orderRepo.findOne({
+      where: { id: id, client_id: client_id },
+    });
   }
 }
