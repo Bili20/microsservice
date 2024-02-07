@@ -30,7 +30,7 @@ export class OrdersController {
   }
 
   @Get(':id')
-  findOne(@Param('id') id: string) {
-    return this.ordersService.findOne(+id);
+  findOne(@Param('id') id: string, @Req() req: Request) {
+    return this.ordersService.findOne(id, req['user'].sub);
   }
 }
