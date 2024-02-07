@@ -1,15 +1,13 @@
 import { Module } from '@nestjs/common';
-import { AppController } from './app.controller';
-import { AppService } from './app.service';
-import { ProductsModule } from './products/products.module';
 import { TypeOrmModule } from '@nestjs/typeorm';
-import { Product } from './products/entities/product.entity';
-import { OrdersModule } from './orders/orders.module';
+import { AuthModule } from './auth/auth.module';
 import { OrderItem } from './orders/entities/order-item.entity';
 import { Order } from './orders/entities/order.entity';
-import { AuthModule } from './auth/auth.module';
-import { PersonModule } from './person/person.module';
+import { OrdersModule } from './orders/orders.module';
 import { Person } from './person/entities/person.entity';
+import { PersonModule } from './person/person.module';
+import { Product } from './products/entities/product.entity';
+import { ProductsModule } from './products/products.module';
 
 @Module({
   imports: [
@@ -29,7 +27,5 @@ import { Person } from './person/entities/person.entity';
     AuthModule,
     PersonModule,
   ],
-  controllers: [AppController],
-  providers: [AppService],
 })
 export class AppModule {}
