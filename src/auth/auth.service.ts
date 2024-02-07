@@ -2,7 +2,6 @@ import { Injectable, UnauthorizedException } from '@nestjs/common';
 import { JwtService } from '@nestjs/jwt';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Person } from 'src/person/entities/person.entity';
-import { PersonService } from 'src/person/person.service';
 import { Repository } from 'typeorm';
 import { AuthDto } from './dto/creat-auth.dto';
 const bcrypt = require('bcrypt');
