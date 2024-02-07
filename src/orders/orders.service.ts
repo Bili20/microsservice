@@ -40,8 +40,8 @@ export class OrdersService {
     return order;
   }
 
-  findAll() {
-    return `This action returns all orders`;
+  async findAll(client_id: number) {
+    return await this.orderRepo.find({ where: { client_id: client_id } });
   }
 
   findOne(id: number) {
